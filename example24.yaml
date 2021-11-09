@@ -1,0 +1,22 @@
+apiVersion: v2
+name: throw-backend
+version: 0.0.1
+
+dependencies:
+- name: minio
+  version: 0.1
+  condition: minio.enabled, global.contractTests.enabled
+  tags:
+    - environment
+    - contracttests
+- name: backend
+  version: 0.1
+  condition: backend.enabled, global.contractTests.enabled
+  tags:
+    - environment
+    - contracttests
+- name: job-mc-create-bucket
+  version: 0.1
+  condition: job-mc-create-bucket.enabled, global.migrations.enabled
+  tags:
+    - migrations

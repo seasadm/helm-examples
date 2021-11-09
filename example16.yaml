@@ -1,0 +1,46 @@
+#
+# Cron jobs
+#
+cronjobs:
+# Подготовительные мероприятия к старту нового сезона (за час до старта)
+# 23:00 MSK (20:00 UTC)
+  prepare-start-season:
+    schedule: "0 20 * * *"
+    command: '["bash"]'
+    args: '["-c", "/app/src/manage.py start_period"]'
+# Мероприятия по закрытию периода
+# 12:00 MSK (09:00 UTC)
+  complete-period:
+    schedule: "0 9 * * *"
+    command: '["bash"]'
+    args: '["-c", "/app/src/manage.py complete_period"]'
+# Отправка наград
+# 03:05 MSK (00:05 UTC)
+  send-pending-rewards:
+    schedule: "5 0 * * *"
+    command: '["bash"]'
+    args: '["-c", "/app/src/manage.py send_pending_rewards --ignore-previous"]'
+---
+
+{{- range $name, $params := .Values.cronjobs }}
+---
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: {{ $.Chart.Name }}-{{ $name }}
+spec:
+  schedule: {{ $params.schedule | quote}}
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: job
+            command: {{ $params.command }}
+            args: {{ $params.args }}
+            image: {{ $.Values.global.image_name }}
+            env:
+{{ include "common_envs" $ | indent 14 }}
+          restartPolicy: OnFailure
+{{- end }}

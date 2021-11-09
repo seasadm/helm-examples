@@ -1,0 +1,16 @@
+    spec:
+      containers:
+        - name: myapplication
+{{- if eq .Values.global.env "production" }}
+          resources:
+            requests:
+              cpu: 3500m
+{{- else if hasPrefix "review" .Values.global.env }}
+          resources:
+            requests:
+              cpu: 500m
+{{ - else }}
+          resources:
+            limits:
+              cpu: 1500m
+{{- end }}

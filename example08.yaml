@@ -1,0 +1,13 @@
+app:
+  PYTHONUNBUFFERED: "1"
+  FLASK_APP: "project/__init__.py"
+  FLASK_DEBUG: "1"
+  APP_USERNAME: "throw_app"
+  UPLOAD_FOLDER: "upload"
+  REPORTS_FOLDER: "reports"
+  JSON_AS_ASCII: "False"
+  SEND_FILE_MAX_AGE_DEFAULT: "0"
+  THROW_DB_HOST: "192.168.5.11"
+  THROW_DB_NAME: "throw_dev"
+  THROW_USER: "throw_user"
+  THROW_DB_PASSWORD: "throw_test_throw_test"

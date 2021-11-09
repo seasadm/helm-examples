@@ -1,0 +1,14 @@
+minio:
+  enabled: true
+postgresql:
+  enabled: true
+backend:
+  enabled: true
+rabbitmq:
+  enabled: true
+job-load-db-dump:
+  enabled: false
+
+tags:
+  environment: true
+  migrations: false

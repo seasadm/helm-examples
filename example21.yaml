@@ -1,0 +1,19 @@
+{{ if .Values.app.storage.persistence }}
+       volumeMounts:
+       - mountPath: /data
+         name: data
+ volumeClaimTemplates:
+ - metadata:
+     name: app-data
+   spec:
+     accessModes: [ "ReadWriteOnce" ]
+     resources:
+       requests:
+         storage: >-
+           {{ first (pluck .Values.app.cloud .Values.app.storage.persistenVolumeSize) | quote }}
+     storageClassName: {{ first (pluck .Values.app.cloud .Values.app.storage.storgeclass) }}
+{{ else }}
+       volumeMounts:
+       - mountPath: /data
+         emptyDir: {}
+{{ end }}

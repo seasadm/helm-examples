@@ -1,0 +1,17 @@
+app:
+  databaseurl: postgres://myapp:mypass@postgres:5432/backend
+  storage:
+    persistence: "true"
+    storageclass:
+      aws: gp2
+      gcp: standard
+    persistentVolumeSize:
+      aws: 10G
+      gcp: 20G
+alerts:
+  from: "info.production@company.local"
+  receivers:
+    - "team@company.local"
+      host: "smtp.company.local"
+    - "support@subcompany.com"
+      host: "smtp.subcompany.com"

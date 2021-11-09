@@ -1,0 +1,6 @@
+Деплой релиза {{ .Release.Name }}
+в окружение {{ .Values.global.env }} прошел!
+Приложение установлено в namespace:
+- {{ .Release.Namespace }}
+Вэбинтерфейс доступен по адресу:
+http://{{ .Values.global.ci_url }}

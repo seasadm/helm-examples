@@ -1,0 +1,35 @@
+app:
+  PYTHONUNBUFFERED:
+    _default: "1"
+  FLASK_APP:
+    _default: "project/__init__.py"
+  FLASK_DEBUG:
+    _default: "1"
+  APP_USERNAME:
+    _default: "throw_app"
+  JSON_AS_ASCII:
+    _default: "False"
+  THROW_DB_HOST:
+    _default: "192.168.5.11"
+    stage: "192.168.4.9"
+    prod: "192.168.4.91"
+  THROW_DB_NAME:
+    _default: "throw_dev"
+    test: "throw"
+    stage: "throw_preprod"
+    prod: "pproduction"
+---
+
+{{- define "app_envs" }}
+
+{{- range $name, $map := .Values.app }}
+- name: {{ $name }}
+  value: {{ pluck $.Values.global.env $map | first | default $map._default | quote}}
+{{- end }}
+
+- name: GIT_COMMIT
+  value: "{{ .Values.global.git_commit }}"
+- name: GIT_TAG
+  value: "{{ .Values.global.git_tag }}"
+
+{{- end }}

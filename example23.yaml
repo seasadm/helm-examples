@@ -1,0 +1,28 @@
+apiVersion: v2
+name: throw-backend
+version: 0.0.1
+
+dependencies:
+- name: minio
+  version: 6.2.11
+  repository: https://charts.bitnami.com/bitnami
+  condition: minio.enabled, global.contractTests.enabled
+- name: backend
+  version: 0.1
+  repository: file://path/to/backend/chart
+  condition: backend.enabled
+- name: postgres
+  version: 13.0.1
+  repository: "@stable"
+  condition: postgres.enabled
+- name: rabbitmq
+  version: 0.1
+  condition: rabbitmq.enabled, global.contractTests.enabled
+- name: ingress-tls
+  version: 0.1
+  condition: ingress-tls.enabled
+- name: job-load-db-dump
+  version: 0.1
+  condition: job-load-db-dump.enabled
+
+

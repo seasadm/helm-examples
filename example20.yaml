@@ -1,0 +1,13 @@
+{{- if and (ne .Values.global.env "production") (ne .Values.global.env "loadtest") }}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+ name: {{ .Chart.Name }}-postgresql
+spec:
+ serviceName: postgres
+ selector:
+   matchLabels:
+     service: postgresql
+[...skip...]
+{{- end }}

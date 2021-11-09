@@ -1,0 +1,11 @@
+{{ define "annotations" }}
+annotations:
+  pipeline: {{ .Values.global.pipeline | quote }}
+  user: {{ .Values.global.pipelinerunner | quote }}
+{{ end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+{{ include "annotations" . | indent 2 }}

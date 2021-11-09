@@ -1,0 +1,13 @@
+{{ define "nodeselector" }}
+nodeSelector:
+  "mcs-nodepool": "system"
+tolerations:
+- key: dedicated
+  operator: Equal
+  value: system
+{{ end }}
+---
+    podTemplate:
+      spec:
+        tolerations:
+        {{- include "nodeselector" . | indent 8 }}

@@ -1,0 +1,13 @@
+     containers:
+     - name: application
+       image: registry.company.local/myapplication:0.0.1
+       env:
+       - name: DBURL
+         value: {{ .Values.app.databaseurl }}
+       - name: SAVECACHE
+         value: {{ .Values.app.storage.persistence }}
+       - name: NOTIFYFROM
+         value: {{ .Values.alerts.from }}
+       ports:
+       - name: http
+         containerPort: 8080

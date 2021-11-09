@@ -1,0 +1,21 @@
+{{ define "affinity" }}
+{{ if eq .Values.global.ens "production" }}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - {{ .Chart.Name }}
+            topologyKey: kubernetes.io/hostname
+{{ end }}
+{{ end }}
+---
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+{{ inglude "affinity" . }}

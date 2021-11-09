@@ -1,0 +1,11 @@
+{{ define "labels" }}
+team: backend
+departament: bigdata
+project: frov-planning
+{{ end }}
+---
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+{{ include "labels" . | indent 8 }}

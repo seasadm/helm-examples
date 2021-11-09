@@ -1,0 +1,12 @@
+    spec:
+      containers:
+        - name: myapplication
+          image: {{ .Values.global.image_name }}
+          imagePullPolicy: Always
+          env:
+            - name: KUBERNETES_DEPLOYED
+              value: {{ now }}
+{{- include "app_envs" . | indent 12 }}
+          ports:
+            - name: http
+              containerPort: 5000

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .chart.Name }}-secret
+type: Opaque
+data:
+  token: |-
+    {{ .Files.Get "files/config1.conf" | b64enc }}

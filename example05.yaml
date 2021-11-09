@@ -1,0 +1,17 @@
+ volumeClaimTemplates:
+ - metadata:
+     name: app-data
+   spec:
+     accessModes: [ "ReadWriteOnce" ]
+     resources:
+       requests:
+{{ if eq .Values.app.cloud "aws" }}
+         storage: "{{ .Values.app.storage.persistenVolumeSize.aws }}"
+{{ else }}
+         storage: "{{ .Values.app.storage.persistenVolumeSize.gcp }}"
+{{ end  }}
+{{ if eq .Values.app.cloud "aws" }}
+     storageClassName: {{ .Values.app.storage.storgeclass.aws }}
+{{ else }}
+     storageClassName: {{ .Values.app.storage.storgeclass.gcp }}
+{{ end }}

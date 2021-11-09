@@ -1,0 +1,18 @@
+node1:
+  value: "definition"
+  subNode1:
+    VALUE: "DEFINITION"
+    subNode21:
+      VALUE: SOME
+      VALUE1: Thing
+    subNode22:
+      VALUE: SOME
+      VALUE1: Thing
+node2:
+  value: "definition"
+  subNode1:
+    - "listName1"
+      setting1: "settingValue1"
+    - "listName2"
+      setting1: "settingValue1"
+

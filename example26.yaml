@@ -1,0 +1,20 @@
+global:
+  system:
+    storageclass: "hdd"
+  tests: "no"
+  app:
+    DB_URL: postgres://myapp:mypass@postgres:5432/backend
+    RMQ_URL: amqp://rabbitmq:mypass@rabbitmq
+
+postgres:
+  POSTGRES_USER: "backend"
+  POSTGRES_PASSWORD: "mypassword"
+
+minio:
+  storage: '2Gi'
+  MINIO_KEY: '123123123'
+
+rabbitmq:
+  rmq:
+    pvc:
+      size: '2Gi'

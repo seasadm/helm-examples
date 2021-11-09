@@ -1,0 +1,27 @@
+{{- define "app_envs" }}
+- name: PYTHONUNBUFFERED
+  value: {{ .Values.app.PYTHONUNBUFFERED }}
+- name: FLASK_APP
+  value: {{ .Values.app.FLASK_APP }}
+- name: FLASK_DEBUG
+  value: {{ .Values.app.FLASK_DEBUG }}
+- name: APP_USERNAME
+  value: {{ .Values.app.APP_USERNAME }}
+- name: JSON_AS_ASCII
+  value: {{ .Values.app.JSON_AS_ASCII }}
+- name: SEND_FILE_MAX_AGE_DEFAULT
+  value: {{ .Values.app.SEND_FILE_MAX_AGE_DEFAULT }}
+- name: THROW_DB_HOST
+  value: {{ .Values.app.THROW_DB_HOST }}
+- name: THROW_DB_NAME
+  value: {{ .Values.app.THROW_DB_NAME }}
+- name: THROW_USER
+  value: {{ .Values.app.THROW_USER }}
+- name: THROW_DB_PASSWORD
+  value: {{ .Values.app.THROW_DB_PASSWORD }}
+{{- end }}
+
+
+
+
+

@@ -1,0 +1,11 @@
+{{- define "app_envs" }}
+
+{{- range $name, $value := .Values.app }}
+- name: {{ $name }}
+  value: {{ $value }}
+{{- end }}
+
+{{- end }}
+
+
+
